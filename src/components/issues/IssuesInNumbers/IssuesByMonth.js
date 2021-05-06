@@ -13,9 +13,25 @@ const useStyles = createUseStyles((theme) => ({
     }
 }));
 
-function UnresolvedTicketsComponent({ containerStyles = {} }) {
+let items = [
+    { title: 'January', val: '34' },
+    { title: 'February', val: '23' },
+    { title: 'March', val: '56' },
+    { title: 'April', val: '12' },
+    { title: 'May', val: '3' },
+    { title: 'June', val: '12' },
+    { title: 'July', val: '17' },
+    { title: 'August', val: '53' },
+    { title: 'September', val: '12' },
+    { title: 'October', val: '19' },
+    { title: 'November', val: '21' },
+    { title: 'December', val: '45' }
+];
+
+function IssuesByMonth({ title, itms, containerStyles = {} }) {
     const theme = useTheme();
     const classes = useStyles({ theme });
+    itms = items;
 
     function renderStat(title, value) {
         return (
@@ -29,18 +45,12 @@ function UnresolvedTicketsComponent({ containerStyles = {} }) {
     return (
         <CardComponent
             containerStyles={containerStyles}
-            title='Unresolved tickets'
-            link='View details'
-            subtitle='Group:'
-            subtitleTwo='Support'
-            items={[
-                renderStat('Waiting on Feature Request', 4238),
-                renderStat('Awaiting Customer Response', 1005),
-                renderStat('Awaiting Developer Fix', 914),
-                renderStat('Pending', 281)
-            ]}
+            title={title}
+            link='View Graph'
+            subtitle='Shows issues posted by month'
+            items={itms.map((value) => renderStat(value.title, value.val))}
         />
     );
 }
 
-export default UnresolvedTicketsComponent;
+export default IssuesByMonth;

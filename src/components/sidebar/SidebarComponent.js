@@ -53,24 +53,24 @@ function SidebarComponent() {
                 onClick={() => onClick(SLUGS.dashboard)}
             />
             <MenuItem
-                id={SLUGS.overview}
-                items={[SLUGS.overviewTwo, SLUGS.overviewThree]}
+                id={SLUGS.issues}
+                items={[SLUGS.issuesTwo, SLUGS.issuesThree]}
                 title='Issues'
                 icon={IconOverview}
             >
                 <MenuItem
-                    id={SLUGS.overview}
+                    id={SLUGS.issuesTwo}
                     title='Numbers'
                     level={2}
                     icon={IconAgents}
-                    onClick={() => onClick(SLUGS.overview)}
+                    onClick={() => onClick(SLUGS.issuesTwo)}
                 />
                 <MenuItem
-                    id={SLUGS.overviewTwo}
+                    id={SLUGS.issuesThree}
                     title='Graphs'
                     level={2}
                     icon={IconContacts}
-                    onClick={() => onClick(SLUGS.overviewTwo)}
+                    onClick={() => onClick(SLUGS.issuesThree)}
                 />
             </MenuItem>
             <MenuItem
