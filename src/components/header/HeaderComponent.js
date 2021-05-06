@@ -70,7 +70,7 @@ function HeaderComponent() {
         case currentItem === SLUGS.dashboard:
             title = 'Dashboard';
             break;
-        case [SLUGS.overview, SLUGS.overviewTwo, SLUGS.overviewThree].includes(currentItem):
+        case [SLUGS.issues, SLUGS.issuesTwo, SLUGS.issuesThree].includes(currentItem):
             title = 'Issues';
             break;
         case currentItem === SLUGS.tickets:

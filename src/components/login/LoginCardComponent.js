@@ -61,7 +61,8 @@ function LoginCardComponent({}) {
                                 backgroundColor: theme.color.lightGrayishBlue2,
                                 borderWidth: 0.3,
                                 borderColor: 'rgba(0, 0, 0, 0.3)',
-                                marginTop: 10
+                                marginTop: 10,
+                                padding: 6
                             }}
                         />
                     </Column>
