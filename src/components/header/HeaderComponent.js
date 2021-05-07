@@ -106,7 +106,7 @@ function HeaderComponent() {
         case [SLUGS.ideas, SLUGS.ideasTwo, SLUGS.ideasThree].includes(currentItem):
             title = 'Departments';
             break;
-        case currentItem === SLUGS.contacts:
+        case currentItem === SLUGS.authorities:
             title = 'Authorities';
             break;
         case currentItem === SLUGS.agents:
