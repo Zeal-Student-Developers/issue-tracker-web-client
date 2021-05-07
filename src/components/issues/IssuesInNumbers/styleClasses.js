@@ -1,5 +1,4 @@
-import React from 'react';
-import { createUseStyles, useTheme } from 'react-jss';
+import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles((theme) => ({
     container: {

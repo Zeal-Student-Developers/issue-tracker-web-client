@@ -6,12 +6,15 @@ import Theme from 'resources/theme';
 import Routes from 'routes';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import { LoginProvider } from 'contexts/LoginContext';
 
 ReactDOM.render(
     <ThemeProvider theme={Theme}>
-        <Router>
-            <Routes />
-        </Router>
+        <LoginProvider>
+            <Router>
+                <Routes />
+            </Router>
+        </LoginProvider>
     </ThemeProvider>,
     document.getElementById('root')
 );
