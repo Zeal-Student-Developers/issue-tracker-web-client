@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { string } from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Row } from 'simple-flexbox';
@@ -7,6 +7,9 @@ import { SidebarContext } from 'hooks/useSidebar';
 import SLUGS from 'resources/slugs';
 import { IconBell, IconSearch } from 'assets/icons';
 import DropdownComponent from 'components/dropdown';
+import { LoginContext } from 'contexts/LoginContext';
+import { authService } from 'services/auth';
+import { getCurrentUserDetails } from 'services/user';
 
 const useStyles = createUseStyles((theme) => ({
     avatar: {
@@ -64,6 +67,30 @@ function HeaderComponent() {
     const { currentItem } = useContext(SidebarContext);
     const theme = useTheme();
     const classes = useStyles({ theme });
+    const history = useHistory();
+
+    const { isLoggedIn, setIsLoggedIn, currentUser, setCurrentUser } = useContext(LoginContext);
+
+    useEffect(() => {
+        async function updateUser() {
+            if (!currentUser) {
+                const data = await getCurrentUserDetails();
+                if (data && data.success === true && data.res) setCurrentUser(data.res.user);
+            }
+        }
+        updateUser();
+        return () => {};
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentUser]);
+
+    const handleLogout = () => {
+        if (isLoggedIn) {
+            authService.logout();
+            setIsLoggedIn(false);
+            setCurrentUser(null);
+            history.push('/');
+        }
+    };
 
     let title;
     switch (true) {
@@ -128,7 +155,9 @@ function HeaderComponent() {
                 <DropdownComponent
                     label={
                         <>
-                            <span className={classes.name}>Authority Level 3</span>
+                            <span className={classes.name}>
+                                {currentUser && `${currentUser.firstName} ${currentUser.lastName}`}
+                            </span>
                             <img
                                 src='https://avatars3.githubusercontent.com/u/21162888?s=460&v=4'
                                 alt='avatar'
@@ -143,7 +172,7 @@ function HeaderComponent() {
                         },
                         {
                             label: 'Logout',
-                            onClick: () => console.log('logout')
+                            onClick: handleLogout
                         }
                     ]}
                     position={{

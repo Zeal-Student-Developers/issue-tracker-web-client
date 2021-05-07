@@ -14,7 +14,7 @@ const useStyles = createUseStyles((theme) => ({
     }
 }));
 
-function LoginComponent({}) {
+function LoginComponent() {
     const theme = useTheme();
     const classes = useStyles({ theme });
 
