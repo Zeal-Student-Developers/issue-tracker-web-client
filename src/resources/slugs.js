@@ -8,7 +8,7 @@ export default {
     ideas: '/ideas',
     ideasTwo: '/ideas/two',
     ideasThree: '/ideas/three',
-    contacts: '/contacts',
+    authorities: '/authorities',
     agents: '/agents',
     articles: '/articles',
     settings: '/settings',
