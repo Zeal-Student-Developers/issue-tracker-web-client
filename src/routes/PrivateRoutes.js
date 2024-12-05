@@ -2,9 +2,10 @@ import React, { Suspense, lazy } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import SLUGS from 'resources/slugs';
 import LoadingComponent from 'components/loading';
-import IssueNumberComponent from 'components/issues';
 
 const DashboardComponent = lazy(() => import('./dashboard'));
+const IssueNumberComponent = lazy(() => import('components/issues'));
+const AuthorityComponent = lazy(() => import('components/authorities'));
 
 function PrivateRoutes() {
     return (
@@ -18,7 +19,7 @@ function PrivateRoutes() {
                 <Route exact path={SLUGS.ideasTwo} render={() => <div>ideasTwo</div>} />
                 <Route exact path={SLUGS.ideasThree} render={() => <div>ideasThree</div>} />
                 <Route exact path={SLUGS.ideas} render={() => <div>ideas</div>} />
-                <Route exact path={SLUGS.contacts} render={() => <div>contacts</div>} />
+                <Route exact path={SLUGS.authorities} component={AuthorityComponent} />
                 <Route exact path={SLUGS.agents} render={() => <div>agents</div>} />
                 <Route exact path={SLUGS.articles} render={() => <div>articles</div>} />
                 <Route exact path={SLUGS.settings} render={() => <div>settings</div>} />

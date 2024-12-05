@@ -41,13 +41,12 @@ const addRefreshTokenInterceptor = (request) => {
         async (error) => {
             const originalReq = error.config;
             // Stop the loop
-            console.log(originalReq.url);
+            console.log(originalReq);
             if (
                 error.response.status === 401 &&
                 originalReq.url === apiConstants.API_REFRESH_TOKEN
             ) {
                 //window.location.href = '/login';
-                console.log('Reached');
                 return Promise.reject(error);
             }
 
@@ -57,7 +56,6 @@ const addRefreshTokenInterceptor = (request) => {
                 error.response.status === 401 &&
                 error.response.statusText === 'Unauthorized'
             ) {
-                console.log('I was called');
                 const refresh_token = localStorage.getItem('refresh');
 
                 if (refresh_token) {
@@ -69,6 +67,7 @@ const addRefreshTokenInterceptor = (request) => {
                         if (res && res.data && res.data.token) {
                             localStorage.setItem('jwt', res.data.token);
                             setJWTHeader(request);
+                            originalReq.headers['Authorization'] = `Bearer ${res.data.token}`;
                             return request(originalReq);
                         }
                     } catch (e) {
